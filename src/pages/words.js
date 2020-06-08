@@ -41,7 +41,7 @@ const WordsPage = ({ data }) => {
   useEffect(() => {
     fetch("/.netlify/functions/airtable").then(async res => {
       const data = await res.json()
-      console.log(data)
+
       setWords(data)
     })
   }, [])

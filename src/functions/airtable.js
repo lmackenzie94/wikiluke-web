@@ -30,7 +30,7 @@ exports.handler = function (event, context, callback) {
           const body = JSON.stringify(allRecords)
           const response = {
             statusCode: 200,
-            body: body,
+            body,
             headers: {
               "content-type": "application/json",
               "cache-control": "Cache-Control: max-age=300, public",
