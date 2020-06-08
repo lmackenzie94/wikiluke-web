@@ -1,0 +1,39 @@
+# CSS Notes
+
+- The browser will pull styling from the most specific element, regardless of where it’s written in the code (specificity).
+- .class1.class2 will style only elements with BOTH classes.
+- p:nth-child(3n + 2) = apply to every **3rd ‘p’, starting at the 2nd instance** (will mess up if other elements mixed in between).
+- “**Margin collapse**” is when the margin between two elements takes on the largest margin of the elements, instead of the sum of the margins (unless there is another element in between).
+  - To avoid: set a padding 1px or border on the parent to prevent child elements from breaking their parent containers.
+- Always **end your font stack with a generic font style**.
+- Set font size to **62.5% or 125%** so that 1rem is **10px or 20px**, respectively.
+- The `*` selector selects ALL elements (called “**wildcard selector**”)
+- When floating elements, always clearfix the parent.
+- Set `<img>` max-width to 100% so they’re never bigger than the parent, and width 100% so they’re never smaller.
+- Set wrapper to max-width, not width, so that you don’t get a bottom scroll bar when you narrow the browser window.
+- **Inline elements will ignore widths** set on them.
+- `Display: none` removes content footprint. `Visibility: hidden` and `Opacity: 0` will not.
+- **By default, all elements are `position: static`.** Use position:relative to move an element relative to itself.
+- Set `<a>` tags to `display: block` to set padding/margin on them.
+- `:before` / `:after` **require the content property** (even if blank).
+- You **can’t transition from `display: none` to `display: block`** - can cheat by using `opacity: 0` to `opacity: 1`.
+- Z-index **only works on positioned elements**.
+- **Block elements always take up a whole 'line'** regardless of their width.
+- Background shorthand (**CIPRA**): colour, image, position, repeat, attachment
+- Set body background colour to white incase user has a non-white default background.
+- Use modifier classes where possible (ex. .main-class.mod-class)
+- Use `transform-origin` to change the point around which an object rotates (default 50%).
+- When you position an element `fixed`, it no longer takes up space (basically floats above the content).
+- Set image height to auto to not skew aspect ratio.
+- Remember the `:not()` selector.
+- **`em`** is relative to the font size of its direct or nearest parent; **`rem`** is only relative to the html (root) font-size.
+- By default, **background images will repeat.**
+- **Inline and inline-block elements have ghost space**. Set to block or vertical-align: middle.
+- The immediate children of a `<ul>` **must be** `<li>`.
+- Use `<fieldset>` to group inputs. Allows you to use `<legend>`.
+- `justify-content` is **ALWAYS tied to the main-axis**.
+- `align-content` is specifically for wrapped content (default is ‘stretch’).
+- `flex-basis` when set to `flex-direction: column` **will affect height**.
+- When using SCSS, build you img paths as if you’re in the style.css file.
+- `box-sizing: border-box` tells the browser to **account for any border and padding** in the values you specify for an element's width and height. 
+- While inline/embedded CSS offers the advantage of no http request, external CSS can be cached, reused, and keeps your HTML files smaller and cleaner.

@@ -1,0 +1,14 @@
+@media (max-width: 800px) {
+  .beliefsContainer {
+    flex-direction: column-reverse;
+  }
+
+  .topicsPanel {
+    flex: 0 0 175px;
+    margin-bottom: 30px;
+    border: none;
+    border-top: 15px solid rgb(242, 242, 242);
+    border-bottom: 15px solid rgb(242, 242, 242);
+    padding: 0 20px !important;
+  }
+}
