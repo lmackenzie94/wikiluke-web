@@ -1,52 +1,33 @@
-import React, { useState, useEffect, useMemo } from "react"
+import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { graphql } from "gatsby"
 
-export const query = graphql`
-  query WordsPageQuery {
-    words: allAirtable(filter: { table: { eq: "Words" } }) {
-      edges {
-        node {
-          id
-          data {
-            Word
-            Definition
-          }
-        }
-      }
-    }
-  }
-`
-
-const WordsPage = ({ data }) => {
-  // const sortedWords = useMemo(
-  //   () =>
-  //     data.words.edges.sort((a, b) => {
-  //       const word1 = a.node.data.Word.toUpperCase().trim()
-  //       const word2 = b.node.data.Word.toUpperCase().trim()
-
-  //       if (word1 < word2) {
-  //         return -1
-  //       }
-  //       if (word1 > word2) {
-  //         return 1
-  //       }
-  //       return 0
-  //     }),
-  //   [data]
-  // )
-  const [words, setWords] = useState([])
+const WordsPage = () => {
+  const [words, setWords] = useState()
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState()
 
   useEffect(() => {
-    fetch("/.netlify/functions/airtable").then(async res => {
-      const data = await res.json()
-
-      setWords(data)
-    })
+    const getWords = async () => {
+      const response = await fetch(
+        "https://better-brain.herokuapp.com/words"
+      ).catch(e => {
+        setError(`Error fetching data: ${e}`)
+        setLoading(false)
+      })
+      if (!response.ok) {
+        setError(
+          `Something went wrong: Expected 200 response, got ${response.status}`
+        )
+        setLoading(false)
+        return
+      }
+      const words = await response.json()
+      setWords(words)
+      setLoading(false)
+    }
+    getWords()
   }, [])
-
-  // const [words, setWords] = useState(sortedWords)
 
   return (
     <Layout>
@@ -72,51 +53,33 @@ const WordsPage = ({ data }) => {
             </th>
           </tr>
         </thead>
-        <tbody style={{ fontSize: "0.85rem" }}>
-          {/* {words.map((word, idx) => (
-            <tr key={idx} style={{ background: idx % 2 === 0 && `#f2f2f2` }}>
-              <td
-                style={{
-                  border: `1px solid #ddd`,
-                  padding: `8px`,
-                  fontWeight: `bold`,
-                }}
-              >
-                {word.node.data.Word}
-              </td>
-              <td
-                style={{
-                  border: `1px solid #ddd`,
-                  padding: `8px`,
-                }}
-              >
-                {word.node.data.Definition}
-              </td>
-            </tr>
-          ))} */}
-          {words.map((word, idx) => (
-            <tr key={idx} style={{ background: idx % 2 === 0 && `#f2f2f2` }}>
-              <td
-                style={{
-                  border: `1px solid #ddd`,
-                  padding: `8px`,
-                  fontWeight: `bold`,
-                }}
-              >
-                {word.Word}
-              </td>
-              <td
-                style={{
-                  border: `1px solid #ddd`,
-                  padding: `8px`,
-                }}
-              >
-                {word.Definition}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        {words && !error && !loading && (
+          <tbody>
+            {words.map((word, idx) => (
+              <tr key={idx} style={{ background: idx % 2 === 0 && `#f2f2f2` }}>
+                <td
+                  style={{
+                    border: `1px solid #ddd`,
+                    padding: `8px`,
+                  }}
+                >
+                  {word.name}
+                </td>
+                <td
+                  style={{
+                    border: `1px solid #ddd`,
+                    padding: `8px`,
+                  }}
+                >
+                  {word.definition}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
+      {loading && <p>Loading. . .</p>}
+      {error && <p>{error}</p>}
     </Layout>
   )
 }
