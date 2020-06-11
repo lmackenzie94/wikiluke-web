@@ -1,3 +1,3 @@
-# WikiLuke
+# wikiluke (website)
 
-- for the things I want to remember, but won't.
+- pulls data from various sources, including my [wikiluke API](https://github.com/lmackenzie94/wikiluke-api)

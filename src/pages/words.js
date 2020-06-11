@@ -10,7 +10,7 @@ const WordsPage = () => {
   useEffect(() => {
     const getWords = async () => {
       const response = await fetch(
-        "https://better-brain.herokuapp.com/words"
+        "https://wikiluke.herokuapp.com/words"
       ).catch(e => {
         setError(`Error fetching data: ${e}`)
         setLoading(false)
