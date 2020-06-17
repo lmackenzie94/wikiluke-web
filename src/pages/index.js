@@ -3,7 +3,14 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
 
-const navItems = [`Beliefs`, `Advice`, `Words`, `Quotes`, `Funnies`]
+const navItems = [
+  `Beliefs`,
+  `Advice`,
+  `Words`,
+  `Quotes`,
+  `Funnies`,
+  `Learnings`,
+]
 
 const IndexPage = () => {
   return (

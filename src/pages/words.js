@@ -4,27 +4,28 @@ import SEO from "../components/seo"
 
 const WordsPage = () => {
   const [words, setWords] = useState()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
 
   useEffect(() => {
     const getWords = async () => {
-      const response = await fetch(
-        "https://wikiluke.herokuapp.com/words"
-      ).catch(e => {
+      try {
+        setLoading(true)
+        const response = await fetch("https://wikiluke.herokuapp.com/words")
+
+        if (!response.ok) {
+          setError(
+            `Something went wrong: Expected 200 response, got ${response.status}`
+          )
+          return
+        }
+        const words = await response.json()
+        setWords(words)
+      } catch (e) {
         setError(`Error fetching data: ${e}`)
+      } finally {
         setLoading(false)
-      })
-      if (!response.ok) {
-        setError(
-          `Something went wrong: Expected 200 response, got ${response.status}`
-        )
-        setLoading(false)
-        return
       }
-      const words = await response.json()
-      setWords(words)
-      setLoading(false)
     }
     getWords()
   }, [])
