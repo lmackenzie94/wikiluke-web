@@ -15,8 +15,8 @@ console.log(allTables)
 module.exports = {
   siteMetadata: {
     title: `WikiLuke`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `For things I want to remember, but won't`,
+    author: `Luke MacKenzie`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
