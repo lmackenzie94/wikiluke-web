@@ -33,28 +33,28 @@ export const query = graphql`
 
 const formatBeliefsAndFacts = (beliefs, facts) => {
   const allFacts = facts
-    .map(({ node: node }) => {
-      const points = Object.keys(node)
+    .map(({ node: fact }) => {
+      const points = Object.keys(fact)
         .filter(point => point.includes("fact"))
-        .map(point => node[point])
+        .map(point => fact[point])
         .filter(point => point)
 
       return {
-        belief: node.belief,
+        belief: fact.belief,
         points,
       }
     })
     .filter(fact => fact.points.length)
 
   const allBeliefs = beliefs
-    .map(({ node: node }) => {
-      const points = Object.keys(node)
+    .map(({ node: belief }) => {
+      const points = Object.keys(belief)
         .filter(point => point.includes("point"))
-        .map(point => node[point])
+        .map(point => belief[point])
         .filter(point => point)
 
       return {
-        belief: node.belief,
+        belief: belief.belief,
         points,
         facts: [],
       }
@@ -81,7 +81,7 @@ const BeliefsPage = ({ data }) => {
     )
 
     setBeliefs(formattedBeliefs)
-  }, [])
+  }, [data])
 
   return (
     <Layout>
@@ -156,7 +156,11 @@ const BeliefsPage = ({ data }) => {
           <ul style={{ listStyle: `none`, margin: 0 }}>
             {beliefs.map(belief => (
               <li key={`${belief.belief}-link`}>
-                <a href={`#${belief.belief}`} className="removeVisitedStyle">
+                <a
+                  href={`#${belief.belief}`}
+                  className="removeVisitedStyle"
+                  style={{ fontFamily: "Courier" }}
+                >
                   {belief.belief}
                 </a>
               </li>

@@ -50,8 +50,10 @@ const LearningsPage = () => {
   for (const category in learnings) {
     const block = (
       <>
-        <h2>{category}</h2>
-        <ul>
+        <h2 style={{ borderBottom: `2px solid #32a852`, paddingBottom: 5 }}>
+          {category}
+        </h2>
+        <ul style={{ marginBottom: 50 }}>
           {learnings[category].map((learning, idx) => (
             <li key={idx}>{learning}</li>
           ))}
@@ -64,7 +66,7 @@ const LearningsPage = () => {
   return (
     <Layout>
       <SEO title="Learnings" />
-      <h1>Learnings</h1>
+      <h1 style={{ marginBottom: 50 }}>Learnings</h1>
       {content.map((block, idx) => (
         <div key={`block-${idx}`}>{block}</div>
       ))}

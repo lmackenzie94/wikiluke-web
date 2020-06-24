@@ -200,7 +200,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Arial", Courier, monospace;
   font-size: 1rem;
   font-weight: normal;
   word-wrap: break-word;
@@ -240,7 +240,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier", Courier, monospace;
 
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
@@ -259,7 +259,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier", Courier, monospace;
 
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
@@ -278,7 +278,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier", Courier, monospace;
 
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
@@ -297,7 +297,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Courier", Courier, monospace;
 
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
@@ -440,6 +440,7 @@ table {
   line-height: 1.45rem;
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
 }
 fieldset {
   margin-left: 0;
@@ -597,6 +598,7 @@ th {
   padding-right: 0.96667rem;
   padding-top: 0.725rem;
   padding-bottom: calc(0.725rem - 1px);
+  word-wrap: break-word;
 }
 th:first-child,
 td:first-child {
@@ -633,9 +635,17 @@ pre tt:before,
 pre tt:after {
   content: "";
 }
+
+th.word {
+  width: 180px;
+}
+
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
+  }
+  th.word {
+    width: 150px;
   }
 }
 
