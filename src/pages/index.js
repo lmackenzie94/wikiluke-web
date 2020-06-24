@@ -21,7 +21,7 @@ const IndexPage = () => {
       </h2>
       <p
         style={{
-          marginLeft: `10px`,
+          marginLeft: `5px`,
           fontSize: `1.25rem`,
           fontFamily: `Courier`,
         }}
