@@ -16,7 +16,6 @@ export const query = graphql`
           point4
           point5
           point6
-          point7
         }
       }
     }
@@ -25,6 +24,9 @@ export const query = graphql`
         node {
           belief
           fact1
+          fact2
+          fact3
+          fact4
         }
       }
     }
