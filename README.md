@@ -4,6 +4,6 @@
 
 ### Related Repos
 
-[wikiluke API](https://github.com/lmackenzie94/wikiluke-api)
-[wikiluke React Native App](https://github.com/lmackenzie94/wikiluke-app)
-[wikiluke Chrome Extension](https://github.com/lmackenzie94/wikiluke-chrome-ext)
+- [wikiluke API](https://github.com/lmackenzie94/wikiluke-api)
+- [wikiluke React Native App](https://github.com/lmackenzie94/wikiluke-app)
+- [wikiluke Chrome Extension](https://github.com/lmackenzie94/wikiluke-chrome-ext)
