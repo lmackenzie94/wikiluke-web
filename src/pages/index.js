@@ -4,11 +4,11 @@ import SEO from "../components/seo"
 import { Link } from "gatsby"
 
 const navItems = [
-  `Beliefs`,
+  // `Beliefs`,
   `Advice`,
   `Words`,
   `Quotes`,
-  `Funnies`,
+  // `Funnies`,
   `Learnings`,
 ]
 
