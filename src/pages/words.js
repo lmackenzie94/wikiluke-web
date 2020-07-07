@@ -118,7 +118,7 @@ const WordsPage = () => {
           </tbody>
         )}
       </table>
-      {loading && <p>Loading. . .</p>}
+      {loading && <p>Loading . . .</p>}
       {error && <p>{error}</p>}
     </Layout>
   )

@@ -70,7 +70,7 @@ const LearningsPage = () => {
       {content.map((block, idx) => (
         <div key={`block-${idx}`}>{block}</div>
       ))}
-      {loading && <p>Loading. . .</p>}
+      {loading && <p>Loading . . .</p>}
       {error && <p>{error}</p>}
     </Layout>
   )

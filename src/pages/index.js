@@ -33,7 +33,7 @@ const IndexPage = () => {
           {navItems.map(item => (
             <li
               key={item}
-              style={{ display: `inline-block`, margin: `0 25px 20px 10px` }}
+              style={{ display: `inline-block`, margin: `0 25px 20px 5px` }}
             >
               <Link
                 to={`/${item.toLowerCase()}`}

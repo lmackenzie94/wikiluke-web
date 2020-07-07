@@ -1,20 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import { GrRefresh } from "react-icons/gr"
 
 const Header = ({ siteTitle }) => {
-  const handleRebuild = () => {
-    fetch("https://api.netlify.com/build_hooks/5ed0087cfbe7dfef8dea49c1", {
-      method: "POST",
-    })
-      .then(res => {
-        console.log("REBUILDING...")
-      })
-      .catch(err => {
-        throw new Error(`Build error: ${err}`)
-      })
-  }
   return (
     <header
       style={{
@@ -28,8 +16,6 @@ const Header = ({ siteTitle }) => {
           margin: `0 auto`,
           maxWidth: 1100,
           padding: `1.45rem 1.0875rem`,
-          display: `flex`,
-          justifyContent: `space-between`,
           alignItems: `center`,
         }}
       >
@@ -44,18 +30,6 @@ const Header = ({ siteTitle }) => {
             {siteTitle}
           </Link>
         </h1>
-        <button
-          onClick={handleRebuild}
-          aria-label="rebuild site"
-          style={{
-            fontSize: `1.5rem`,
-            border: `none`,
-            outline: `none`,
-            background: `none`,
-          }}
-        >
-          <GrRefresh />
-        </button>
       </div>
     </header>
   )
