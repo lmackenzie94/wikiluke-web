@@ -52,6 +52,14 @@ module.exports = {
     {
       resolve: `gatsby-source-google-sheets`,
       options: {
+        spreadsheetId: `1Ia80X8wxJlO7Mt4sZ9YjRYv2zntA-TIJVXK4nbZlIVk`,
+        worksheetTitle: `BookNotes`,
+        credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
+      },
+    },
+    {
+      resolve: `gatsby-source-google-sheets`,
+      options: {
         spreadsheetId: `1EPACco2fwFoFAtmG0miGoAeW0c8gpev7eMbmUhtOC_M`,
         worksheetTitle: `Beliefs`,
         credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),

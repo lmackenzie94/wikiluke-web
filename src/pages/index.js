@@ -10,6 +10,7 @@ const navItems = [
   `Quotes`,
   // `Funnies`,
   `Learnings`,
+  `Book Notes`,
 ]
 
 const IndexPage = () => {
@@ -36,7 +37,7 @@ const IndexPage = () => {
               style={{ display: `inline-block`, margin: `0 25px 20px 5px` }}
             >
               <Link
-                to={`/${item.toLowerCase()}`}
+                to={`/${item.toLowerCase().replace(" ", "-")}`}
                 style={{
                   color: `#32a852`,
                   fontWeight: `bold`,
