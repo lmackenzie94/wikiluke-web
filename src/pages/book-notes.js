@@ -59,6 +59,12 @@ TO-DO:
                 {book.note2 && <li>{book.note2}</li>}
                 {book.note3 && <li>{book.note3}</li>}
                 {book.note4 && <li>{book.note4}</li>}
+                {book.note5 && <li>{book.note5}</li>}
+                {book.note6 && <li>{book.note6}</li>}
+                {book.note7 && <li>{book.note7}</li>}
+                {book.note8 && <li>{book.note8}</li>}
+                {book.note9 && <li>{book.note9}</li>}
+                {book.note10 && <li>{book.note10}</li>}
               </ul>
             </div>
           ))}
