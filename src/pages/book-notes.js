@@ -18,9 +18,6 @@ export const query = graphql`
           note5
           note6
           note7
-          note8
-          note9
-          note10
         }
       }
     }
@@ -70,9 +67,9 @@ TO-DO:
                 {book.note5 && <li>{book.note5}</li>}
                 {book.note6 && <li>{book.note6}</li>}
                 {book.note7 && <li>{book.note7}</li>}
-                {book.note8 && <li>{book.note8}</li>}
+                {/* {book.note8 && <li>{book.note8}</li>}
                 {book.note9 && <li>{book.note9}</li>}
-                {book.note10 && <li>{book.note10}</li>}
+                {book.note10 && <li>{book.note10}</li>} */}
               </ul>
             </div>
           ))}
