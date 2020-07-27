@@ -2,11 +2,48 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import "./words.css"
+import styled, { css } from "styled-components"
+
+const WordsTableStyles = styled.table`
+  thead {
+    background: var(--green);
+    tr {
+      color: white;
+      th {
+        border: 1px solid #ddd;
+        padding: 12px;
+      }
+    }
+  }
+  tbody {
+    td.definitionCell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    td.wordCell {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+  }
+`
+
+const Message = styled.p`
+  text-align: center;
+  font-weight: bold;
+  ${props =>
+    props.error &&
+    css`
+      color: red;
+    `}
+`
 
 const WordsPage = () => {
   const [words, setWords] = useState()
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState()
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const getWords = async () => {
@@ -61,49 +98,19 @@ const WordsPage = () => {
   return (
     <Layout>
       <SEO title="Words" />
-      <table style={{ padding: `15px` }}>
-        <thead style={{ background: "#32a852" }}>
-          <tr style={{ color: `white` }}>
-            <th
-              className="word"
-              style={{
-                border: `1px solid #ddd`,
-                padding: `12px`,
-              }}
-            >
-              Word
-            </th>
-            <th
-              style={{
-                border: `1px solid #ddd`,
-                padding: `12px`,
-              }}
-            >
-              Definition
-            </th>
+      <WordsTableStyles>
+        <thead>
+          <tr>
+            <th className="word">Word</th>
+            <th>Definition</th>
           </tr>
         </thead>
         {words && !error && !loading && (
           <tbody>
             {words.map((word, idx) => (
               <tr key={idx} style={{ background: idx % 2 === 0 && `#f2f2f2` }}>
-                <td
-                  style={{
-                    border: `1px solid #ddd`,
-                    padding: `8px`,
-                  }}
-                >
-                  {word.name}
-                </td>
-                <td
-                  style={{
-                    display: `flex`,
-                    justifyContent: `space-between`,
-                    alignItems: `center`,
-                    border: `1px solid #ddd`,
-                    padding: `10px`,
-                  }}
-                >
+                <td className="wordCell">{word.name}</td>
+                <td className="definitionCell">
                   {word.definition}
                   <button
                     className="removeWordBtn"
@@ -117,9 +124,9 @@ const WordsPage = () => {
             ))}
           </tbody>
         )}
-      </table>
-      {loading && <p>Loading . . .</p>}
-      {error && <p>{error}</p>}
+      </WordsTableStyles>
+      {loading && <Message>Loading . . .</Message>}
+      {error && <Message error>{error}</Message>}
     </Layout>
   )
 }

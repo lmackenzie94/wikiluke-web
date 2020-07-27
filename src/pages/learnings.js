@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import styled, { css } from "styled-components"
+
+const Message = styled.p`
+  text-align: center;
+  font-weight: bold;
+  ${props =>
+    props.error &&
+    css`
+      color: red;
+    `}
+`
 
 const LearningsPage = () => {
   const [learnings, setLearnings] = useState()
@@ -70,8 +81,8 @@ const LearningsPage = () => {
       {content.map((block, idx) => (
         <div key={`block-${idx}`}>{block}</div>
       ))}
-      {loading && <p>Loading . . .</p>}
-      {error && <p>{error}</p>}
+      {loading && <Message>Loading . . .</Message>}
+      {error && <Message error>{error}</Message>}
     </Layout>
   )
 }

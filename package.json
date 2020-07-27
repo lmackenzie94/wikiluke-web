@@ -17,11 +17,13 @@
     "gatsby-source-filesystem": "^2.3.4",
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-transformer-sharp": "^2.5.2",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "react-icons": "^3.10.0"
+    "react-icons": "^3.10.0",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "prettier": "2.0.5"

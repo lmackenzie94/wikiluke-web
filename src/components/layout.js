@@ -1,9 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-
 import Header from "./header"
-import "./layout.css"
+import "normalize.css"
+import GlobalStyles, { Wrapper } from "./styles/globalStyles"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -18,17 +18,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <GlobalStyles />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 1100,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <Wrapper>
         <main>{children}</main>
-        <footer></footer>
-      </div>
+      </Wrapper>
     </>
   )
 }

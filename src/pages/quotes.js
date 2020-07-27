@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 
 export const query = graphql`
   query QuotesPageQuery {
@@ -18,39 +19,45 @@ export const query = graphql`
   }
 `
 
+const QuoteStyles = styled.div`
+  h2 {
+    margin-bottom: 40px;
+    position: relative;
+    span {
+      font-family: var(--bodyFont);
+      font-size: 4em;
+      position: absolute;
+      top: -20px;
+      padding-left: 1rem;
+    }
+  }
+  ul li {
+    margin-bottom: 0.4rem;
+  }
+`
+
 const QuotesPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Quotes" />
-      <h2
-        style={{
-          marginBottom: `40px`,
-          position: `relative`,
-        }}
-      >
-        Favourite Quotes{" "}
-        <span
-          style={{
-            fontFamily: "Arial",
-            fontSize: "4em",
-            position: `absolute`,
-            top: -20,
-            paddingLeft: "1rem",
-          }}
-        >
-          &#8221;
-        </span>
-      </h2>
-      <ul>
-        {data.quotes.edges.map((edge, idx) => (
-          <li
-            key={edge.node.id}
-            style={{ fontWeight: `bold`, color: idx % 2 !== 0 && `#007031` }}
-          >
-            {edge.node.data.Text}
-          </li>
-        ))}
-      </ul>
+      <QuoteStyles>
+        <h2>
+          Favourite Quotes
+          <span>&#8221;</span>
+        </h2>
+        <ul>
+          {data.quotes.edges.map((edge, idx) => (
+            <li
+              key={edge.node.id}
+              style={{
+                color: idx % 2 !== 0 && `var(--green)`,
+              }}
+            >
+              {edge.node.data.Text}
+            </li>
+          ))}
+        </ul>
+      </QuoteStyles>
     </Layout>
   )
 }

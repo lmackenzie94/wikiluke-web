@@ -1,37 +1,33 @@
 import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
+import styled from "styled-components"
+import { Wrapper } from "./styles/globalStyles"
+
+const HeaderStyles = styled.header`
+  background: var(--lightGray);
+  margin-bottom: 1.45rem;
+  border-bottom: 1px solid #dedede;
+  h1 {
+    margin: 0;
+    padding: 1rem 0;
+    font-size: 1rem;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+`
 
 const Header = ({ siteTitle }) => {
   return (
-    <header
-      style={{
-        background: `#f2f2f2`,
-        marginBottom: `1.45rem`,
-        borderBottom: `1px solid #dedede`,
-      }}
-    >
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 1100,
-          padding: `1.45rem 1.0875rem`,
-          alignItems: `center`,
-        }}
-      >
-        <h1 style={{ margin: 0, fontSize: `1rem` }}>
-          <Link
-            to="/"
-            style={{
-              textDecoration: `none`,
-              color: `black`,
-            }}
-          >
-            {siteTitle}
-          </Link>
+    <HeaderStyles>
+      <Wrapper>
+        <h1>
+          <Link to="/">{siteTitle}</Link>
         </h1>
-      </div>
-    </header>
+      </Wrapper>
+    </HeaderStyles>
   )
 }
 
@@ -40,7 +36,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: `wikiluke`,
 }
 
 export default Header

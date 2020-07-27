@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
+import styled from "styled-components"
 
 const navItems = [
   // `Beliefs`,
@@ -13,43 +14,55 @@ const navItems = [
   `Book Notes`,
 ]
 
+const IndexStyles = styled.div`
+  h2 {
+    font-size: 3rem;
+    margin: 100px 0 0 0;
+  }
+  p {
+    margin: 0 0 0 5px;
+    font-size: 1rem;
+    font-family: var(--headingFont);
+  }
+`
+
+const NavStyles = styled.nav`
+  margin-top: 50px;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin: 0 25px 20px 5px;
+      a {
+        color: var(--green);
+        font-weight: bold;
+        font-family: var(--headingFont);
+      }
+    }
+  }
+`
+
 const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h2 style={{ fontSize: `4rem`, marginBottom: 0, marginTop: `100px` }}>
-        Welcome,
-      </h2>
-      <p
-        style={{
-          marginLeft: `5px`,
-          fontSize: `1.25rem`,
-          fontFamily: `Courier`,
-        }}
-      >
-        to my brain dump.
-      </p>
-      <nav style={{ marginTop: `50px` }}>
-        <ul style={{ margin: 0, listStyle: `none` }}>
+      <IndexStyles>
+        <h2>Welcome,</h2>
+        <p>to my brain dump.</p>
+      </IndexStyles>
+      <NavStyles>
+        <ul>
           {navItems.map(item => (
-            <li
-              key={item}
-              style={{ display: `inline-block`, margin: `0 25px 20px 5px` }}
-            >
-              <Link
-                to={`/${item.toLowerCase().replace(" ", "-")}`}
-                style={{
-                  color: `#32a852`,
-                  fontWeight: `bold`,
-                  fontFamily: `Courier`,
-                }}
-              >
+            <li key={item}>
+              <Link to={`/${item.toLowerCase().replace(" ", "-")}`}>
                 {item}
               </Link>
             </li>
           ))}
         </ul>
-      </nav>
+      </NavStyles>
     </Layout>
   )
 }

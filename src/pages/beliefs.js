@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
-import "./beliefs.css"
+import styled from "styled-components"
 
 export const query = graphql`
   {
@@ -29,6 +29,73 @@ export const query = graphql`
           fact4
         }
       }
+    }
+  }
+`
+
+const BeliefsStyles = styled.section`
+  display: flex;
+  height: 85vh;
+
+  div {
+    overflow-y: scroll;
+    padding-right: 30px;
+    padding-top: 15px;
+    div {
+      margin-bottom: 25px;
+      h2 {
+        margin-bottom: 20px;
+        color: var(--green);
+        span {
+          font-size: 0.6rem;
+          color: black;
+        }
+      }
+      ul li {
+        margin-bottom: 0.4rem;
+      }
+      div {
+        border-left: 5px solid var(--green);
+        padding: 20px;
+        background: var(--lightGray);
+        h3 {
+          font-size: 1rem;
+          text-transform: uppercase;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .panel {
+    overflow-y: scroll;
+    padding: 20px;
+    border-left: 1px solid var(--lightGray);
+    background: var(--lightGray);
+    min-width: 225px;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        margin-bottom: 0.4rem;
+        a {
+          font-family: var(--headingFont);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column-reverse;
+
+    .panel {
+      flex: 0 0 175px;
+      margin-bottom: 30px;
+      border: none;
+      border-top: 15px solid rgb(242, 242, 242);
+      border-bottom: 15px solid rgb(242, 242, 242);
+      padding: 0 20px !important;
     }
   }
 `
@@ -88,47 +155,19 @@ const BeliefsPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Beliefs" />
-      <section
-        className="beliefsContainer"
-        style={{ display: `flex`, height: `85vh` }}
-      >
-        <div
-          className="customScrollbar"
-          style={{
-            overflowY: `scroll`,
-            paddingRight: `30px`,
-            paddingTop: `15px`,
-          }}
-        >
+      <BeliefsStyles>
+        <div className="customScrollbar">
           {beliefs.map(belief => (
-            <div
-              key={belief.belief}
-              id={belief.belief}
-              style={{ marginBottom: `50px` }}
-            >
-              <h2 style={{ marginBottom: `10px` }}>{belief.belief}</h2>
+            <div key={belief.belief} id={belief.belief}>
+              <h2>{belief.belief}</h2>
               <ul>
                 {belief.points.map((point, idx) => (
                   <li key={`${belief}-${idx}`}>{point}</li>
                 ))}
               </ul>
               {belief.facts.length > 0 && (
-                <div
-                  style={{
-                    borderLeft: `5px solid #32a852`,
-                    padding: 20,
-                    background: `#f2f2f2`,
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontSize: `1.2rem`,
-                      textTransform: `uppercase`,
-                      margin: 0,
-                    }}
-                  >
-                    Facts
-                  </h3>
+                <div>
+                  <h3>Facts</h3>
                   <ul style={{ marginBottom: 0 }}>
                     {belief.facts.map((fact, idx) => (
                       <li
@@ -144,32 +183,18 @@ const BeliefsPage = ({ data }) => {
             </div>
           ))}
         </div>
-        <aside
-          className="customScrollbar topicsPanel"
-          style={{
-            overflowY: `scroll`,
-            padding: `20px`,
-            borderLeft: `1px solid`,
-            borderColor: `#f2f2f2`,
-            background: `#f2f2f2`,
-            minWidth: 225,
-          }}
-        >
-          <ul style={{ listStyle: `none`, margin: 0 }}>
+        <aside className="customScrollbar panel">
+          <ul>
             {beliefs.map(belief => (
               <li key={`${belief.belief}-link`}>
-                <a
-                  href={`#${belief.belief}`}
-                  className="removeVisitedStyle"
-                  style={{ fontFamily: "Courier" }}
-                >
+                <a href={`#${belief.belief}`} className="removeVisitedStyle">
                   {belief.belief}
                 </a>
               </li>
             ))}
           </ul>
         </aside>
-      </section>
+      </BeliefsStyles>
     </Layout>
   )
 }
