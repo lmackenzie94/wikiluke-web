@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import { Wrapper } from "./styles/globalStyles"
+import { Wrapper } from "./styles/GlobalStyles"
 
 const HeaderStyles = styled.header`
   background: var(--lightGray);
