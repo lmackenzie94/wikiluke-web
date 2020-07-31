@@ -19,6 +19,7 @@ const HighlightsStyles = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 50px;
     button {
       border: none;
       background: none;
@@ -35,9 +36,6 @@ const HighlightsStyles = styled.div`
         transition: color 0.3s ease-out;
       }
     }
-  }
-  h1 {
-    margin-bottom: 50px;
   }
   h2 {
     font-size: 18px;
