@@ -4,6 +4,8 @@ const GlobalStyles = createGlobalStyle`
 
   :root {
     --green: #32a852;
+    --gray: #c2c2c2;
+    --grey: var(--gray);
     --lightGray: #f2f2f2;
     --lightGrey: var(--lightGray);
     --headingFont: "Courier", Courier, monospace;

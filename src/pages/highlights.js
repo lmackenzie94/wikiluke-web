@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled, { css } from "styled-components"
+import { FaPlus, FaMinus } from "react-icons/fa"
 
 const Message = styled.p`
   text-align: center;
@@ -13,12 +14,49 @@ const Message = styled.p`
     `}
 `
 
-// TO DO: make the highlights collapsable
+const HighlightsStyles = styled.div`
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      border: none;
+      background: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+      &:hover svg,
+      &:focus svg {
+        color: black;
+      }
+      svg {
+        font-size: 24px;
+        color: var(--gray);
+        transition: color 0.3s ease-out;
+      }
+    }
+  }
+  h1 {
+    margin-bottom: 50px;
+  }
+  h2 {
+    font-size: 18px;
+    margin: 0;
+    a {
+      color: var(--green);
+    }
+  }
+  ul {
+    margin-bottom: 50px;
+    padding-left: 30px;
+  }
+`
 
 const HighlightsPage = () => {
   const [highlights, setHighlights] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState()
+  const [collapsed, setCollapsed] = useState(false)
 
   const formatHighlights = highlightsArray => {
     const formattedHighlights = []
@@ -70,29 +108,33 @@ const HighlightsPage = () => {
   return (
     <Layout>
       <SEO title="Highlights" />
-      <h1 style={{ marginBottom: 50 }}>Highlights</h1>
-      {highlights.map((highlight, idx) => {
-        const { title, url, highlights } = highlight
-        return (
-          <div key={idx}>
-            <h3 style={{ paddingBottom: 5 }}>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--green)" }}
-              >
-                {title}
-              </a>
-            </h3>
-            <ul style={{ marginBottom: 50 }}>
-              {highlights.map((h, idx) => (
-                <li key={idx}>{h}</li>
-              ))}
-            </ul>
-          </div>
-        )
-      })}
+      <HighlightsStyles>
+        <h1>Highlights</h1>
+        {highlights.map((highlight, idx) => {
+          const { title, url, highlights } = highlight
+          return (
+            <div key={idx}>
+              <div className="heading">
+                <h2>
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    {title}
+                  </a>
+                </h2>
+                <button onClick={() => setCollapsed(prev => !prev)}>
+                  {collapsed ? <FaPlus /> : <FaMinus />}
+                </button>
+              </div>
+              {!collapsed && (
+                <ul>
+                  {highlights.map((h, idx) => (
+                    <li key={idx}>{h}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )
+        })}
+      </HighlightsStyles>
       {loading && <Message>Loading . . .</Message>}
       {error && <Message error>{error}</Message>}
     </Layout>
