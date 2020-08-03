@@ -53,6 +53,7 @@ const Header = ({ siteTitle }) => {
     localStorage.setItem("themeColour", color.hex)
     setThemeColour(color.hex)
   }
+
   return (
     <HeaderStyles btnColor={themeColour}>
       <Wrapper>

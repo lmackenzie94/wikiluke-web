@@ -11,7 +11,9 @@ export function useThemeColour() {
   return context
 }
 export function ThemeColourProvider(props) {
-  const [themeColour, setThemeColour] = useState(props.defaultColour)
+  const [themeColour, setThemeColour] = useState()
+
+  // const [themeColour, setThemeColour] = useState(props.defaultColour)
   // useMemo ensures the provider value will only update when colour updates
   // no need to test this - React tests useMemo for us!
   const value = useMemo(() => [themeColour, setThemeColour], [themeColour])

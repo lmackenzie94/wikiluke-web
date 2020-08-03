@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
@@ -17,7 +17,12 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [themeColour] = useThemeColour()
+  const [themeColour, setThemeColour] = useThemeColour()
+
+  useEffect(() => {
+    const color = localStorage.getItem("themeColour") || "transparent"
+    setThemeColour(color)
+  }, [])
 
   return (
     <>
