@@ -9,7 +9,7 @@ const RebuildStyles = styled.div`
     font-size: 1.5rem;
     margin-bottom: 20px;
     margin-top: 100px;
-    color: var(--green);
+    color: var(--theme);
   }
   button {
     font-size: 1.5rem;

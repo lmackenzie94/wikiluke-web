@@ -1,6 +1,6 @@
 .removeWordBtn {
   margin-left: 30px;
-  color: green;
+  color: var(--theme);
   border: none;
   border-radius: 3px;
   font-weight: bold;

@@ -41,7 +41,7 @@ const HighlightsStyles = styled.div`
     font-size: 18px;
     margin: 0;
     a {
-      color: var(--green);
+      color: var(--theme);
     }
   }
   ul {

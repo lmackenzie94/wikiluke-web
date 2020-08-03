@@ -36,7 +36,7 @@ const BookNotesStyles = styled.section`
       margin-bottom: 25px;
       h2 {
         margin-bottom: 20px;
-        color: var(--green);
+        color: var(--theme);
         span {
           font-size: 0.6rem;
           color: black;
@@ -62,6 +62,7 @@ const BookNotesStyles = styled.section`
         margin-bottom: 0.4rem;
         a {
           font-family: var(--headingFont);
+          color: black;
         }
       }
     }

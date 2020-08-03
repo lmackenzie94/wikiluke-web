@@ -6,7 +6,7 @@ import styled, { css } from "styled-components"
 
 const WordsTableStyles = styled.table`
   thead {
-    background: var(--green);
+    background: var(--theme);
     tr {
       color: white;
       th {

@@ -61,7 +61,9 @@ const LearningsPage = () => {
   for (const category in learnings) {
     const block = (
       <>
-        <h2 style={{ borderBottom: `2px solid #32a852`, paddingBottom: 5 }}>
+        <h2
+          style={{ borderBottom: `2px solid var(--theme)`, paddingBottom: 5 }}
+        >
           {category}
         </h2>
         <ul style={{ marginBottom: 50 }}>

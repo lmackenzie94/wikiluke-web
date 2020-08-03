@@ -45,7 +45,7 @@ const BeliefsStyles = styled.section`
       margin-bottom: 25px;
       h2 {
         margin-bottom: 20px;
-        color: var(--green);
+        color: var(--theme);
         span {
           font-size: 0.6rem;
           color: black;
@@ -55,7 +55,7 @@ const BeliefsStyles = styled.section`
         margin-bottom: 0.4rem;
       }
       div {
-        border-left: 5px solid var(--green);
+        border-left: 5px solid var(--theme);
         padding: 20px;
         background: var(--lightGray);
         h3 {
@@ -81,6 +81,7 @@ const BeliefsStyles = styled.section`
         margin-bottom: 0.4rem;
         a {
           font-family: var(--headingFont);
+          color: black;
         }
       }
     }

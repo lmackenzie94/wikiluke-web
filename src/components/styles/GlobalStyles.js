@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from "styled-components"
 const GlobalStyles = createGlobalStyle`
 
   :root {
+    --theme: ${props => props.themeColour};
     --green: #32a852;
     --gray: #c2c2c2;
     --grey: var(--gray);
@@ -26,6 +27,10 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.25;
   }
 
+  a {
+    color: var(--theme);
+  }
+
   .customScrollbar::-webkit-scrollbar {
   width: 0.3em;
 }
@@ -35,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 .customScrollbar::-webkit-scrollbar-thumb {
-  background-color: #32a852;
+  background-color: var(--theme);
 }
 
 a.removeVisitedStyle:visited {

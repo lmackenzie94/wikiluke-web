@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { useThemeColour } from "../contexts/themeColourContext"
 
 const navItems = [
   // `Beliefs`,
@@ -37,7 +38,6 @@ const NavStyles = styled.nav`
       display: inline-block;
       margin: 0 25px 20px 5px;
       a {
-        color: var(--green);
         font-weight: bold;
         font-family: var(--headingFont);
       }

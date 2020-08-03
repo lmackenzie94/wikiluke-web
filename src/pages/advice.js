@@ -24,7 +24,7 @@ const AdviceStyles = styled.div`
     font-style: italic;
     margin-bottom: 40px;
     padding-left: 20px;
-    border-left: 5px solid var(--green);
+    border-left: 5px solid var(--theme);
   }
 `
 
@@ -47,7 +47,7 @@ const AdvicePage = ({ data }) => {
           <li
             key={edge.node.id}
             style={{
-              color: idx % 2 !== 0 && `var(--green)`,
+              color: idx % 2 !== 0 && `var(--theme)`,
               marginBottom: `.4rem`,
             }}
           >

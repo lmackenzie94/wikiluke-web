@@ -50,7 +50,7 @@ const QuotesPage = ({ data }) => {
             <li
               key={edge.node.id}
               style={{
-                color: idx % 2 !== 0 && `var(--green)`,
+                color: idx % 2 !== 0 && `var(--theme)`,
               }}
             >
               {edge.node.data.Text}
