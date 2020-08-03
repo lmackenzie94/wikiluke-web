@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useLayoutEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
@@ -19,8 +19,8 @@ const Layout = ({ children }) => {
 
   const [themeColour, setThemeColour] = useThemeColour()
 
-  useEffect(() => {
-    const color = localStorage.getItem("themeColour") || "transparent"
+  useLayoutEffect(() => {
+    const color = localStorage.getItem("themeColour") || "#008b02"
     setThemeColour(color)
   }, [])
 
