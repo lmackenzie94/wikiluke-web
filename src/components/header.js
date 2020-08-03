@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { Wrapper } from "./styles/GlobalStyles"
 import { GithubPicker } from "react-color"
 import { useThemeColour } from "../contexts/themeColourContext"
+import { useOutsideClickDetect } from "@lmack/hooks"
 
 const HeaderStyles = styled.header`
   background: var(--lightGray);
@@ -24,6 +25,9 @@ const HeaderStyles = styled.header`
         color: black;
       }
     }
+    span {
+      line-height: 1;
+    }
     button {
       width: 25px;
       height: 25px;
@@ -37,6 +41,7 @@ const HeaderStyles = styled.header`
       position: absolute !important;
       top: 75px !important;
       right: 0 !important;
+      z-index: 1;
       > div {
         right: 9px !important;
         left: unset !important;
@@ -49,10 +54,18 @@ const Header = ({ siteTitle }) => {
   const [pickerOpen, setPickerOpen] = useState(false)
   const [themeColour, setThemeColour] = useThemeColour()
 
+  const handleOutsideClick = () => {
+    if (!pickerOpen) return
+    setPickerOpen(false)
+  }
+  const { wrapper } = useOutsideClickDetect(handleOutsideClick)
+
   const handleThemeColour = color => {
     localStorage.setItem("themeColour", color.hex)
     setThemeColour(color.hex)
   }
+
+  console.log(pickerOpen)
 
   return (
     <HeaderStyles btnColor={themeColour}>
@@ -61,16 +74,18 @@ const Header = ({ siteTitle }) => {
           <h1>
             <Link to="/">{siteTitle}</Link>
           </h1>
-          <button
-            onClick={() => setPickerOpen(prev => !prev)}
-            aria-label="change theme colour"
-          ></button>
-          {pickerOpen && (
-            <GithubPicker
-              color={themeColour}
-              onChangeComplete={color => handleThemeColour(color)}
-            />
-          )}
+          <span ref={wrapper}>
+            <button
+              onClick={() => setPickerOpen(prev => !prev)}
+              aria-label="change theme colour"
+            ></button>
+            {pickerOpen && (
+              <GithubPicker
+                color={themeColour}
+                onChangeComplete={color => handleThemeColour(color)}
+              />
+            )}
+          </span>
         </div>
       </Wrapper>
     </HeaderStyles>

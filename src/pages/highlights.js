@@ -50,11 +50,36 @@ const HighlightsStyles = styled.div`
   }
 `
 
+const Highlight = ({ key, title, url, highlights }) => {
+  const [collapsed, setCollapsed] = useState(false)
+
+  return (
+    <div key={key}>
+      <div className="heading">
+        <h2>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        </h2>
+        <button onClick={() => setCollapsed(prev => !prev)}>
+          {collapsed ? <FaPlus /> : <FaMinus />}
+        </button>
+      </div>
+      {!collapsed && (
+        <ul>
+          {highlights.map((h, idx) => (
+            <li key={idx}>{h}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 const HighlightsPage = () => {
   const [highlights, setHighlights] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState()
-  const [collapsed, setCollapsed] = useState(false)
 
   const formatHighlights = highlightsArray => {
     const formattedHighlights = []
@@ -109,28 +134,7 @@ const HighlightsPage = () => {
       <HighlightsStyles>
         <h1>Highlights</h1>
         {highlights.map((highlight, idx) => {
-          const { title, url, highlights } = highlight
-          return (
-            <div key={idx}>
-              <div className="heading">
-                <h2>
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    {title}
-                  </a>
-                </h2>
-                <button onClick={() => setCollapsed(prev => !prev)}>
-                  {collapsed ? <FaPlus /> : <FaMinus />}
-                </button>
-              </div>
-              {!collapsed && (
-                <ul>
-                  {highlights.map((h, idx) => (
-                    <li key={idx}>{h}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          )
+          return <Highlight key={idx} {...highlight} />
         })}
       </HighlightsStyles>
       {loading && <Message>Loading . . .</Message>}
