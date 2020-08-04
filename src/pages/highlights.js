@@ -24,7 +24,7 @@ const HighlightsStyles = styled.div`
       border: none;
       background: none;
       outline: none;
-      margin: 0;
+      margin: 0 0 0 25px;
       padding: 0;
       &:hover svg,
       &:focus svg {
