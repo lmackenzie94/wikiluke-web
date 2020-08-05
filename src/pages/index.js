@@ -84,7 +84,12 @@ const IndexPage = () => {
       <NavStyles>
         <M.ul variants={ulVariants} initial="hidden" animate="show">
           {navItems.map(item => (
-            <M.li key={item} variants={liVariants}>
+            <M.li
+              key={item}
+              variants={liVariants}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+            >
               <Link to={`/${item.toLowerCase().replace(" ", "-")}`}>
                 {item}
               </Link>

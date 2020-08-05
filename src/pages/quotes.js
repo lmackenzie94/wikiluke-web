@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
 import styled from "styled-components"
+import { List, ListItem } from "../components/motion/list"
 
 export const query = graphql`
   query QuotesPageQuery {
@@ -45,18 +46,18 @@ const QuotesPage = ({ data }) => {
           Favourite Quotes
           <span>&#8221;</span>
         </h2>
-        <ul>
+        <List>
           {data.quotes.edges.map((edge, idx) => (
-            <li
+            <ListItem
               key={edge.node.id}
               style={{
                 color: idx % 2 !== 0 && `var(--theme)`,
               }}
             >
               {edge.node.data.Text}
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       </QuoteStyles>
     </Layout>
   )

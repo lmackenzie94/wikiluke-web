@@ -4,6 +4,7 @@ import SEO from "../components/seo"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import { motion as M } from "framer-motion"
+import { List, ListItem } from "../components/motion/list"
 
 export const query = graphql`
   query AdvicePageQuery {
@@ -29,21 +30,6 @@ const AdviceStyles = styled.div`
   }
 `
 
-const ulVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-}
-
-const liVariants = {
-  hidden: { opacity: 0, y: -5 },
-  show: { opacity: 1, y: 0 },
-}
-
 const AdvicePage = ({ data }) => {
   return (
     <Layout>
@@ -62,28 +48,22 @@ const AdvicePage = ({ data }) => {
           improve upon them over time.
         </M.p>
       </AdviceStyles>
-      <M.ol
-        style={{ listStyle: `none` }}
-        variants={ulVariants}
-        initial="hidden"
-        animate="show"
-      >
+      <List style={{ listStyle: `none` }}>
         {data.advice.edges.map((edge, idx) => (
-          <M.li
+          <ListItem
             key={edge.node.id}
             style={{
               color: idx % 2 !== 0 && `var(--theme)`,
               marginBottom: `.4rem`,
             }}
-            variants={liVariants}
           >
             <span style={{ fontWeight: `bold`, marginRight: 10 }}>{`${
               idx + 1
             })`}</span>
             {edge.node.data.Text}
-          </M.li>
+          </ListItem>
         ))}
-      </M.ol>
+      </List>
     </Layout>
   )
 }
