@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import styled, { css } from "styled-components"
 import { FaPlus, FaMinus } from "react-icons/fa"
+import { motion as M, AnimatePresence } from "framer-motion"
 
 const Message = styled.p`
   text-align: center;
@@ -65,13 +66,26 @@ const Highlight = ({ key, title, url, highlights }) => {
           {collapsed ? <FaPlus /> : <FaMinus />}
         </button>
       </div>
-      {!collapsed && (
-        <ul>
-          {highlights.map((h, idx) => (
-            <li key={idx}>{h}</li>
-          ))}
-        </ul>
-      )}
+      <AnimatePresence>
+        {!collapsed && (
+          <M.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {highlights.map((h, idx) => (
+              <M.li
+                key={idx}
+                initial={{ y: -10 }}
+                animate={{ y: 0 }}
+                exit={{ y: -10 }}
+              >
+                {h}
+              </M.li>
+            ))}
+          </M.ul>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

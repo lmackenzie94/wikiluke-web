@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { useThemeColour } from "../contexts/themeColourContext"
+import { motion as M } from "framer-motion"
 
 const navItems = [
   // `Beliefs`,
@@ -45,24 +45,52 @@ const NavStyles = styled.nav`
   }
 `
 
+const ulVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.5,
+    },
+  },
+}
+
+const liVariants = {
+  hidden: { opacity: 0, y: -10 },
+  show: { opacity: 1, y: 0 },
+}
+
 const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
       <IndexStyles>
-        <h2>Welcome,</h2>
-        <p>to my brain dump.</p>
+        <M.h2
+          initial={{ y: -25, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          Welcome,
+        </M.h2>
+        <M.p
+          initial={{ x: -25, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+        >
+          to my brain dump.
+        </M.p>
       </IndexStyles>
       <NavStyles>
-        <ul>
+        <M.ul variants={ulVariants} initial="hidden" animate="show">
           {navItems.map(item => (
-            <li key={item}>
+            <M.li key={item} variants={liVariants}>
               <Link to={`/${item.toLowerCase().replace(" ", "-")}`}>
                 {item}
               </Link>
-            </li>
+            </M.li>
           ))}
-        </ul>
+        </M.ul>
       </NavStyles>
     </Layout>
   )
