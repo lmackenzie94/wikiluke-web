@@ -27,7 +27,7 @@ export const query = graphql`
           fact2
           fact3
           fact4
-        }
+          fact5
       }
     }
   }
