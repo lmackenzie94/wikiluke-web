@@ -1,25 +1,24 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { graphql } from "gatsby"
 import styled from "styled-components"
 import { motion as M } from "framer-motion"
 import { List, ListItem } from "../components/motion/list"
 
-export const query = graphql`
-  query AdvicePageQuery {
-    advice: allAirtable(filter: { table: { eq: "Advice" } }) {
-      edges {
-        node {
-          id
-          data {
-            Text
-          }
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query AdvicePageQuery {
+//     advice: allAirtable(filter: { table: { eq: "Advice" } }) {
+//       edges {
+//         node {
+//           id
+//           data {
+//             Text
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
 
 const AdviceStyles = styled.div`
   p {
@@ -30,7 +29,36 @@ const AdviceStyles = styled.div`
   }
 `
 
-const AdvicePage = ({ data }) => {
+const AdvicePage = () => {
+
+  const [advice, setAdvice] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    const getAdvice = async () => {
+      try {
+        setLoading(true)
+        const response = await fetch("https://wikiluke.herokuapp.com/advice")
+
+        if (!response.ok) {
+          setError(
+            `Something went wrong: Expected 200 response, got ${response.status}`
+          )
+          return
+        }
+        const advice = await response.json()
+        setAdvice(advice)
+      } catch (e) {
+        setError(`Error fetching data: ${e}`)
+      } finally {
+        setLoading(false)
+      }
+    }
+    getAdvice()
+  }, [])
+
+
   return (
     <Layout>
       <SEO title="Advice" />
@@ -49,9 +77,9 @@ const AdvicePage = ({ data }) => {
         </M.p>
       </AdviceStyles>
       <List style={{ listStyle: `none` }}>
-        {data.advice.edges.map((edge, idx) => (
+        {advice.map((a, idx) => (
           <ListItem
-            key={edge.node.id}
+            key={idx}
             style={{
               color: idx % 2 !== 0 && `var(--theme)`,
               marginBottom: `.4rem`,
@@ -60,7 +88,7 @@ const AdvicePage = ({ data }) => {
             <span style={{ fontWeight: `bold`, marginRight: 10 }}>{`${
               idx + 1
             })`}</span>
-            {edge.node.data.Text}
+            {a.text}
           </ListItem>
         ))}
       </List>

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
@@ -85,35 +85,53 @@ const BookNotesStyles = styled.section`
 const BooksPage = ({ data }) => {
   /* 
 TO-DO:
-- turn notes into an array so they can be mapped over
 - sort books alphabetically
 */
+
+const [notes, setNotes] = useState([])
+
+useEffect(() => {
+  const formattedData = data.books.edges.map(node => {
+    const {author, book} = node.node;
+    const notes = []
+    Object.keys(node.node).forEach(key => {
+      if (key.includes('note') && node.node[key]) {
+        notes.push(node.node[key])
+      }
+    })
+    return {author, book, notes }
+  })
+
+  setNotes(formattedData)
+  
+}, [])
 
   return (
     <Layout>
       <SEO title="Book Notes" />
       <BookNotesStyles>
         <div className="customScrollbar">
-          {data.books.edges.map(({ node: book }) => (
+          {notes.map(book => {
+            return (
             <div key={book.book} id={book.book}>
               <h2>
                 {book.book} <span>{book.author}</span>
               </h2>
-              {/* TO DO: do this better */}
               <ul>
-                {book.note1 && <li>{book.note1}</li>}
-                {book.note2 && <li>{book.note2}</li>}
-                {book.note3 && <li>{book.note3}</li>}
-                {book.note4 && <li>{book.note4}</li>}
-                {book.note5 && <li>{book.note5}</li>}
-                {book.note6 && <li>{book.note6}</li>}
-                {book.note7 && <li>{book.note7}</li>}
-                {/* {book.note8 && <li>{book.note8}</li>}
-                {book.note9 && <li>{book.note9}</li>}
-                {book.note10 && <li>{book.note10}</li>} */}
+                {book.notes.map((n,idx) => 
+                  n.includes('*') ? 
+                  <li
+                  key={`note-${idx}`}
+                  dangerouslySetInnerHTML={{
+                  __html: n.replace('*', '<strong>').replace('**', '</strong>')
+                  }}></li>
+                 : 
+                  <li key={`note-${idx}`}>{n}</li>
+                )}
               </ul>
             </div>
-          ))}
+          )
+          })}
         </div>
         <aside className="customScrollbar panel">
           <ul>
