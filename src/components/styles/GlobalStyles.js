@@ -18,7 +18,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-size: .8rem; // 16px
     font-family: var(--bodyFont);
-    line-height: 1.6;
+    line-height: 1.35;
   }
 
   h1,h2,h3,h4,h5,h6 {
@@ -59,7 +59,6 @@ th.word {
 @media only screen and (max-width: 480px) {
    body {
     font-size: 0.75rem;
-    line-height: 1.4;
   }
   th.word {
     width: 150px;

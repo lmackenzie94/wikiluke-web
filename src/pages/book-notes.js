@@ -102,7 +102,14 @@ useEffect(() => {
     return {author, book, notes }
   })
 
-  setNotes(formattedData)
+  const sortedData = formattedData.sort((a,b) => {
+    console.log(a.book, b.book)
+     if (a.book < b.book) { return -1; }
+    if (a.book > b.book) { return 1; }
+    return 0;
+  })
+
+  setNotes(sortedData)
   
 }, [])
 
@@ -135,7 +142,7 @@ useEffect(() => {
         </div>
         <aside className="customScrollbar panel">
           <ul>
-            {data.books.edges.map(({ node: book }) => (
+            {notes.map(book => (
               <li key={`${book.book}-link`}>
                 <a href={`#${book.book}`} className="removeVisitedStyle">
                   {book.book}
