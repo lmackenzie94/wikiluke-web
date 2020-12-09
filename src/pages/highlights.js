@@ -16,6 +16,14 @@ const Message = styled.p`
 `
 
 const HighlightsStyles = styled.div`
+  h1 {
+    margin-bottom: 10px;
+  }
+  .disclaimer {
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 0;
+  }
   .heading {
     display: flex;
     justify-content: space-between;
@@ -147,6 +155,7 @@ const HighlightsPage = () => {
       <SEO title="Highlights" />
       <HighlightsStyles>
         <h1>Highlights</h1>
+        <p className="disclaimer">* this content was taken from articles I found interesting & thought-provoking and does not necessarily reflect my personal beliefs</p>
         {highlights.map((highlight, idx) => {
           return <Highlight key={idx} {...highlight} />
         })}
