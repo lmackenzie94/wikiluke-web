@@ -129,7 +129,7 @@ const HighlightsPage = () => {
       try {
         setLoading(true)
         const response = await fetch(
-          "https://wikiluke.herokuapp.com/highlights"
+          "https://wikiluke-api.onrender.com/highlights"
         )
 
         if (!response.ok) {

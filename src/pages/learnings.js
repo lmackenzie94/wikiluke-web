@@ -37,7 +37,7 @@ const LearningsPage = () => {
     const getLearnings = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://wikiluke.herokuapp.com/learnings")
+        const response = await fetch("https://wikiluke-api.onrender.com/learnings")
 
         if (!response.ok) {
           setError(

@@ -49,7 +49,7 @@ const WordsPage = () => {
     const getWords = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://wikiluke.herokuapp.com/words")
+        const response = await fetch("https://wikiluke-api.onrender.com/words")
 
         if (!response.ok) {
           setError(
@@ -72,7 +72,7 @@ const WordsPage = () => {
     const wordRow = e.target.parentElement.parentElement
     try {
       const response = await fetch(
-        `https://wikiluke.herokuapp.com/words/${id}`,
+        `https://wikiluke-api.onrender.com/words/${id}`,
         { method: "DELETE" }
       )
 

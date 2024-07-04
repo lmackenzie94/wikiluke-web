@@ -39,7 +39,7 @@ const AdvicePage = () => {
     const getAdvice = async () => {
       try {
         setLoading(true)
-        const response = await fetch("https://wikiluke.herokuapp.com/advice")
+        const response = await fetch("https://wikiluke-api.onrender.com/advice")
 
         if (!response.ok) {
           setError(
