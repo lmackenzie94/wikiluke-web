@@ -50,30 +50,30 @@ module.exports = {
         tables: allTables,
       },
     },
-    {
-      resolve: `gatsby-source-google-sheets`,
-      options: {
-        spreadsheetId: `1Ia80X8wxJlO7Mt4sZ9YjRYv2zntA-TIJVXK4nbZlIVk`,
-        worksheetTitle: `BookNotes`,
-        credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
-      },
-    },
-    {
-      resolve: `gatsby-source-google-sheets`,
-      options: {
-        spreadsheetId: `1EPACco2fwFoFAtmG0miGoAeW0c8gpev7eMbmUhtOC_M`,
-        worksheetTitle: `Beliefs`,
-        credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
-      },
-    },
-    {
-      resolve: `gatsby-source-google-sheets`,
-      options: {
-        spreadsheetId: `1EPACco2fwFoFAtmG0miGoAeW0c8gpev7eMbmUhtOC_M`,
-        worksheetTitle: `Facts`,
-        credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-google-sheets`,
+    //   options: {
+    //     spreadsheetId: `1Ia80X8wxJlO7Mt4sZ9YjRYv2zntA-TIJVXK4nbZlIVk`,
+    //     worksheetTitle: `BookNotes`,
+    //     credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-google-sheets`,
+    //   options: {
+    //     spreadsheetId: `1EPACco2fwFoFAtmG0miGoAeW0c8gpev7eMbmUhtOC_M`,
+    //     worksheetTitle: `Beliefs`,
+    //     credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-google-sheets`,
+    //   options: {
+    //     spreadsheetId: `1EPACco2fwFoFAtmG0miGoAeW0c8gpev7eMbmUhtOC_M`,
+    //     worksheetTitle: `Facts`,
+    //     credentials: JSON.parse(process.env.GOOGLE_SHEET_CREDS),
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

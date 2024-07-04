@@ -11,9 +11,9 @@ const navItems = [
   `Words`,
   `Quotes`,
   // `Funnies`,
-  `Learnings`,
-  `Book Notes`,
-  `Highlights`,
+  // `Learnings`,
+  // `Book Notes`,
+  // `Highlights`,
 ]
 
 const IndexStyles = styled.div`
